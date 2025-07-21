@@ -16,22 +16,8 @@ namespace ProyectoIdentity.Controllers
         [HttpGet]
         public IActionResult Registrar()
         {
-            /*
             var model = new FacturaViewModel();
-            model.Items = new List<FacturaItemViewModel>
-            {
-                new FacturaItemViewModel()
-            };
-            //por defecto, agregamos un item para que el usuario no vea el formulario vacio 
-
-            ViewBag.Clientes = new SelectList(_context.Clientes, "Id", "Nombre");
-            ViewBag.CondicionesPago = new SelectList(_context.CondicionesPago, "Id", "Descripcion");
-            ViewBag.MetodosPago = new SelectList(_context.MetodosPago, "Id", "Nombre");
-            ViewBag.Productos = new SelectList(_context.Productos, "Id", "Nombre");
-            ViewBag.ProductosList = _context.Productos.ToList(); // <--- Para JS
-            return View(model);
-            */
-            var model = new FacturaViewModel();
+            model.Fecha = DateTime.Now;
             model.Items.Add(new FacturaItemViewModel());
 
             ViewBag.Clientes = new SelectList(_context.Clientes, "Id", "Nombre");
@@ -89,12 +75,13 @@ namespace ProyectoIdentity.Controllers
                         p.PrecioVenta,
                         PorcentajeDescuento = p.GrupoProducto.PorcentajeDescuento
                     }).ToList();
-
+                /*
                 var errores = ModelState
                 .Where(ms => ms.Value.Errors.Any())
                 .Select(ms => $"{ms.Key}: {string.Join(", ", ms.Value.Errors.Select(e => e.ErrorMessage))}")
                 .ToList();
                 System.Diagnostics.Debug.WriteLine("Errores de validación: " + string.Join(" | ", errores));
+                */
 
                 return View(model);
             }
@@ -118,7 +105,8 @@ namespace ProyectoIdentity.Controllers
             };
             _context.Facturas.Add(factura);
             _context.SaveChanges();
-            return RedirectToAction("Index"); // o como prefieras
+            TempData["MensajeExito"] = "¡Factura registrada exitosamente!";
+            return RedirectToAction("Registrar");
         }
     }
 }
