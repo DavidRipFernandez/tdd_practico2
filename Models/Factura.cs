@@ -1,4 +1,6 @@
-﻿namespace ProyectoIdentity.Models
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace ProyectoIdentity.Models
 {
     public class Factura
     {
@@ -13,6 +15,8 @@
 
         public int MetodoPagoId { get; set; }
         public MetodoPago MetodoPago { get; set; }
+        [Precision(10, 2)]
+        public decimal TotalFactura { get; set; }
 
         public ICollection<FacturaItem> Items { get; set; }
     }

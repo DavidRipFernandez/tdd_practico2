@@ -9,6 +9,7 @@
         public int ClienteId { get; set; }
         public int CondicionPagoId { get; set; }
         public int MetodoPagoId { get; set; }
+        public decimal TotalFactura { get; set; }
         public DateTime Fecha { get; set; }
 
         //items

@@ -15,6 +15,8 @@ namespace ProyectoIdentity.Models
         [Precision(10,2)]
         public decimal PrecioUnitario { get; set; }
         [Precision(10, 2)]
+        public decimal OtroDescuento { get; set; }
+        [Precision(10, 2)]
         public decimal DescuentoAplicado { get; set; } // Porcentaje aplicado
     }
 }
